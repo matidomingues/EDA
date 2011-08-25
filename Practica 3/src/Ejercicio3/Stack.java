@@ -24,7 +24,7 @@ public class Stack {
 		head = head.getNext();
 		size--;
 		return aux;
-	} 
+	}
 
 	public boolean isEmpty() {
 		if (head == null) {
@@ -32,8 +32,8 @@ public class Stack {
 		}
 		return false;
 	}
-	
-	public int getsize(){
+
+	public int getsize() {
 		return size;
 	}
 
@@ -50,10 +50,6 @@ public class Stack {
 			return time;
 		}
 
-		public void setTime(Integer time) {
-			this.time = time;
-		}
-
 		public Node getNext() {
 			return next;
 		}
@@ -61,8 +57,6 @@ public class Stack {
 		public void setNext(Node next) {
 			this.next = next;
 		}
-
-
 
 	}
 }

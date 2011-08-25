@@ -1,0 +1,10 @@
+\begin{document}
+Hola mundo
+\begin{center}
+Esta es una prueba de \LaTeX
+\begin{ttfamily} Esto es \emph{otra} prueba
+\end{ttfamily}
+\begin{rmfamily}
+Hola que tal
+\end{rmfamily} \end{center}
+\end{document}

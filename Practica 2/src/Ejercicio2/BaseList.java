@@ -98,10 +98,6 @@ public class BaseList<T> {
 			return tail;
 		}
 
-		public void setHead(T data) {
-			this.head = data;
-		}
-
 		public void setTail(Node<T> tail) {
 			this.tail = tail;
 		}

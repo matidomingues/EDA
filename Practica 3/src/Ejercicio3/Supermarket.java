@@ -30,8 +30,5 @@ public class Supermarket {
 				info.timePass();				
 			}
 		}
-		for(Aisle info: data){
-			
-		}
 	}
 }

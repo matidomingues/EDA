@@ -98,10 +98,10 @@ public class SetImp<T> implements Set<T> {
 
 		@Override
 		public void remove() {
-			if(actualNode.next() != null){
+			if (actualNode.next() != null) {
 				actualNode.next().setBefore(actualNode.getBefore());
 			}
-			if(actualNode.getBefore()!= null){
+			if (actualNode.getBefore() != null) {
 				actualNode.getBefore().setNext(actualNode.next());
 			}
 			size--;
@@ -168,10 +168,6 @@ public class SetImp<T> implements Set<T> {
 
 		void setNext(Node<T> data) {
 			this.next = data;
-		}
-
-		void setElem(T elem) {
-			this.element = elem;
 		}
 
 		Node<T> next() {

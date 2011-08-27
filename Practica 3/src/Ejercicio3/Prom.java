@@ -9,20 +9,34 @@ public class Prom {
 
 	public void add(int num) {
 		this.num += num;
-		if (num > max) {
-			this.max = num;
-		}
-		if (num < min) {
-			this.min = num;
+		if(max == 0 && min == 0){
+			max = min = this.num;
+		}else if (this.num > max) {
+			this.max = this.num;
 		}
 		sum++;
+	}
+
+	public void addSpecial(int num){
+		this.num -= num;
+		if(this.num < min){
+			min = this.num;
+		}
+		sum++;
+	}
+	public int getMax() {
+		return max;
+	}
+
+	public int getMin() {
+		return min;
 	}
 
 	public double evaluate() {
 		if (sum == 0) {
 			return 0;
 		}
-		return num / sum;
+		return (double)num / sum;
 	}
 
 	public void sumProm(Prom data) {

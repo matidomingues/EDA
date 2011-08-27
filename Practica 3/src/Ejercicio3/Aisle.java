@@ -8,6 +8,7 @@ public class Aisle {
 	Prom oper = new Prom();	
 	
 	public void add(Integer time) {
+		oper.add(time);
 		data.push(time);
 	}
 
@@ -21,14 +22,19 @@ public class Aisle {
 				return data.getsize();
 			} else {
 				currentOperation = data.pop();
-				oper.add(currentOperation);
 			}
 		}
 		currentOperation--;
+		oper.addSpecial(1);
 		elems.add(data.getsize());
 		return data.getsize();
 	}
 	
-	
+	public Prom getElems(){
+		return this.elems;
+	}
+	public Prom getOper(){
+		return this.oper;
+	}
 
 }

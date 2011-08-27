@@ -7,7 +7,7 @@ public class Stack {
 	private int size = 0;;
 
 	public void push(Integer time) {
-		if (!isEmpty()) {
+		if (isEmpty()) {
 			head = tail = new Node(time, null);
 		} else {
 			tail.setNext(new Node(time, tail.getNext()));

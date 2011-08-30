@@ -2,7 +2,7 @@ package Ejercicio3;
 
 public class Aisle {
 
-	Stack data = new Stack();
+	Queue data = new Queue();
 	Integer currentOperation = 0;
 	Prom elems = new Prom();
 	Prom oper = new Prom();	

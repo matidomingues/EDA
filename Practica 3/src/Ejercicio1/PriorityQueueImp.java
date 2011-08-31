@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public class PriorityQueueImp<T> implements PriorityQueue<T> {
 
-	private Node<T> head = null;
+	private Node<Queue<T>> head = null;
 
 	@Override
 	public void enqueue(T elem, int priority) {
@@ -12,25 +12,30 @@ public class PriorityQueueImp<T> implements PriorityQueue<T> {
 			return;
 		}
 		if (head == null) {
-			head = new Node<T>(elem, priority, null);
+			head = new Node<Queue<T>>(new Queue<T>(elem), priority, null);
 		} else {
-			Node<T> aux = head;
-			Node<T> before = null;
+			Node<Queue<T>> aux = head;
+			Node<Queue<T>> aux2 = null;
 			while (aux != null) {
-				if (aux.getPriority() <= priority) {
-					before = aux;
-					aux = aux.getNext();
-				} else {
-					if (before == null) {
-						head = new Node<T>(elem, priority, head);
+				if (head.getPriority() == priority) {
+					(head.getData()).push(elem);
+					return;
+				} else if (head.getPriority() > priority) {
+					if (aux2 == null) {
+						head = new Node<Queue<T>>(new Queue<T>(elem), priority,
+								head);
 					} else {
-						before.setNext(new Node<T>(elem, priority, aux));
+						aux2.setNext(new Node<Queue<T>>(new Queue<T>(elem),
+								priority, aux));
 					}
 					return;
+				} else {
+					aux2 = aux;
+					aux = aux.getNext();
+					if(aux == null){
+						aux2.setNext(new Node<Queue<T>>(new Queue<T>(elem),priority,null));
+					}
 				}
-			}
-			if (before != null) {
-				before.setNext(new Node<T>(elem, priority, null));
 			}
 		}
 
@@ -41,8 +46,10 @@ public class PriorityQueueImp<T> implements PriorityQueue<T> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		T aux = head.getData();
-		head = head.getNext();
+		T aux = (head.getData()).pop();
+		if ((head.getData()).isEmpty()) {
+			head = head.getNext();
+		}
 		return aux;
 	}
 

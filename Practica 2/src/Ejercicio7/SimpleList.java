@@ -14,7 +14,6 @@ public class SimpleList<T, S> {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public T searchById(S key) {
 		Node<T, S> aux = head;
 		Node<T, S> auxB = null;

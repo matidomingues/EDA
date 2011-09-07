@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio3;
 
 public class Tree<T> {
 

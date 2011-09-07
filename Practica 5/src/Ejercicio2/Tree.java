@@ -1,7 +1,6 @@
-package Ejercicio1;
+package Ejercicio2;
 
 public class Tree<T> {
-
 	Tree<T> right;
 	Tree<T> left;
 	T data;

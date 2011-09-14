@@ -1,4 +1,4 @@
-package Ejercicio6;
+package Ejercicio7;
 
 public interface BinarySearchTree<T> {
 	/**
@@ -22,5 +22,29 @@ public interface BinarySearchTree<T> {
 	 * Retorna la cantidad de claves almacenadas.
 	 */
 	public int size();
+	
+	/**
+	 * Retorna en que nivel se encuentra una determinada clave
+	 */
+	public int findKey(T key);
 
+	/**
+	 * Determina la cantidad de hojas
+	 */
+	public int getLeaf();
+	
+	/**
+	 * Busca el mayor elemento
+	 */
+	public T getMax();
+	
+	/**
+	 * Imprime todos los antecesores
+	 */
+	public void printAntescesor();
+	/**
+	 * Imprime todos los descendientes
+	 * 
+	 */
+	public void printDescendants();
 }

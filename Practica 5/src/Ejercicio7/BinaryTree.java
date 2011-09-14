@@ -1,6 +1,4 @@
-package Ejercicio6;
-
-import Ejercicio6.BinarySearchTree;
+package Ejercicio7;
 
 public class BinaryTree<T extends Comparable<? super T>> implements
 		BinarySearchTree<T> {
@@ -127,6 +125,70 @@ public class BinaryTree<T extends Comparable<? super T>> implements
 			return 0;
 		}
 		return 1 + size(tree.getRight()) + size(tree.getLeft());
+	}
+
+	@Override
+	public int findKey(T key) {
+		return findKey(head, key);
+	}
+
+	private int findKey(Tree<T> tree, T key) {
+		int aux;
+		if (tree == null) {
+			return -1;
+		}
+		if (tree.getData().equals(key)) {
+			return 0;
+		}
+		if (key.compareTo(tree.getData()) < 0) {
+			aux = findKey(tree.getLeft(), key);
+		} else {
+			aux = findKey(tree.getRight(), key);
+		}
+		if (aux == -1) {
+			return -1;
+		}
+		return aux + 1;
+	}
+
+	@Override
+	public int getLeaf() {
+		if(head == null){
+			return 0;
+		}
+		return getLeaf(head);
+	}
+
+	private int getLeaf(Tree<T> tree){
+		if(tree == null){
+			return 1;
+		}
+		return getLeaf(tree.getLeft())+getLeaf(tree.getRight());
+	}
+	@Override
+	public T getMax() {
+		if(head == null){
+			return null;
+		}
+		return getMax(head);
+	}
+	
+	private T getMax(Tree<T> tree){
+		if(tree.getRight() == null){
+			return tree.getData();
+		}
+		return getMax(tree.getRight());
+	}
+	@Override
+	public void printAntescesor() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void printDescendants() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

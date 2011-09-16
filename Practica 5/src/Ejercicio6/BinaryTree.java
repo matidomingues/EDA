@@ -1,7 +1,7 @@
 package Ejercicio6;
 
-import Ejercicio6.BinarySearchTree;
-
+import java.util.ArrayList;
+import java.util.List;
 public class BinaryTree<T extends Comparable<? super T>> implements
 		BinarySearchTree<T> {
 
@@ -127,6 +127,28 @@ public class BinaryTree<T extends Comparable<? super T>> implements
 			return 0;
 		}
 		return 1 + size(tree.getRight()) + size(tree.getLeft());
+	}
+	
+	public List<T> getInOrder(int inf, int sup) {
+		List<T> list = new ArrayList<T>();
+		getInOrder(head, inf, sup, list);
+		return list;
+	}
+
+	private void getInOrder(Tree<T> tree, int inf, int sup, List<T> list) {
+		if (tree == null) {
+			return;
+		}
+
+		getInOrder(tree.left, inf, sup, list);
+		if (inf <= 0 && sup >= 0) {
+			list.add(tree.getData());
+		}
+		if (sup == 0) {
+			return;
+		}
+		getInOrder(tree.right, inf - 1, sup - 1, list);
+
 	}
 
 }

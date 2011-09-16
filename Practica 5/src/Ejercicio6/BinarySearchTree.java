@@ -1,5 +1,7 @@
 package Ejercicio6;
 
+import java.util.List;
+
 public interface BinarySearchTree<T> {
 	/**
 	 * Agrega una clave al árbol. Si ya existe, no hace nada y el árbol no se
@@ -22,5 +24,5 @@ public interface BinarySearchTree<T> {
 	 * Retorna la cantidad de claves almacenadas.
 	 */
 	public int size();
-
+	public List<T> getInOrder(int inf, int sup);
 }

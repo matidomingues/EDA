@@ -26,10 +26,7 @@ public class SimpleList<T, S> {
 				head = aux;
 			}
 		}
-		if (aux == null) {
-			return null;
-		}
-		return head.getData();
+		return head.getData();		
 	}
 
 	private static class Node<T, S> {

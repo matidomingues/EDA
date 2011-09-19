@@ -20,8 +20,43 @@ public class BST<T> implements BinarySearchTree<T> {
 	}
 
 	public void remove(T value) {
-		root = remove(root, value);
+		
 	}
+	
+	private Node remove(T value, Node tree){
+		if(tree == null){
+			return null;
+		}
+		if(tree.value.equals(value)){
+			if(tree.left == null && tree.right == null){
+				return null;
+			}else if(tree.left == null){
+				return tree.right;
+			}else if(tree.right == null){
+				return tree.left;
+			}else{
+				if(cmp.compare(tree.left.value,	tree.right.value)>0){
+					addR(tree.right, tree.left);
+					return tree.right;
+				}else{
+					addR(tree.left, tree.right);
+					return tree.left;
+				}
+			}
+		}
+		tree.left = remove(value,tree.left);
+		tree.right = remove(value,tree.right);
+		
+		
+		
+		
+		return tree;
+	}
+	
+	private void addR(Node head, Node data){
+		
+	}
+	
 
 	private Node add(Node node, T value) {
 		return null;

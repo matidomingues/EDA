@@ -33,6 +33,7 @@ public class SortedListImp<T extends Comparable<? super T>> implements
 		return list;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void undo() {
 		Node<T> aux = undos.pop();

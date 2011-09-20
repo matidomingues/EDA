@@ -36,13 +36,12 @@ public class BST<T> implements BinarySearchTree<T> {
 	}
 
 	private class Node {
+		@SuppressWarnings("unused")
 		T value;
 		Node left;
 		Node right;
 
-		Node(T value) {
-			this.value = value;
-		}
+
 	}
 
 	/**

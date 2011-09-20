@@ -132,27 +132,25 @@ public class BinaryTree<T extends Comparable<? super T>> implements
 	
 	public List<T> getInOrder(int inf, int sup) {
 		List<T> list = new ArrayList<T>();
-		getInOrder(head, inf, sup, list, 0);
+		getInOrder(head, inf, sup, list,1);
 		return list;
 	}
 
-	private int getInOrder(Tree<T> tree, Integer inf, Integer sup, List<T> list, int loc) {
-		int index, index2;
+	private int getInOrder(Tree<T> tree, Integer inf, Integer sup, List<T> list, int index) {
 		if (tree == null) {
-			return 0;
-		}
-
-		index = getInOrder(tree.left, inf, sup, list, loc);
-		index++;
-		index = loc+index;
-		if (inf  <= index && sup >= index) {
-			list.add(tree.data);
-		}
-		if (sup == index) {
 			return index;
 		}
-		index2 = getInOrder(tree.right, inf, sup, list, index);
-		return index + index2;
+
+		index = getInOrder(tree.left, inf, sup, list, index);
+		
+		if (sup	< index) {
+			return index;
+		}
+		if (inf  <= index ) {
+			list.add(tree.data);
+		}
+		index++;
+		return getInOrder(tree.right, inf, sup, list, index);
 	}
 
 	

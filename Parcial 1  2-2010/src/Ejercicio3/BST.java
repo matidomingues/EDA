@@ -1,6 +1,7 @@
 package Ejercicio3;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -8,32 +9,31 @@ public class BST<T> {
 	/**
 	 * 12:01 - 12:13
 	 */
-	
+
 	Node tree;
-	
+
 	public List<T> getInOrder(int inf, int sup) {
-		List<T> list = new LinkedList<T>();
-		getInOrder(tree, inf, sup, list);
+		List<T> list = new ArrayList<T>();
+		getInOrder(tree, inf, sup, list, 1);
 		return list;
 	}
 
-	private int getInOrder(Node tree, int inf, int sup, List<T> list) {
-		int index;
+	private int getInOrder(Node tree, Integer inf, Integer sup,
+			List<T> list, int index) {
 		if (tree == null) {
-			return 0;
-		}
-
-		index = getInOrder(tree.left, inf, sup, list);
-		index++;
-		if (inf <= index && sup >= index) {
-			list.add(tree.value);
-		}
-		if (sup == index) {
 			return index;
 		}
-		getInOrder(tree.right, inf, sup, list);
-		return index;
 
+		index = getInOrder(tree.left, inf, sup, list, index);
+
+		if (sup < index) {
+			return index;
+		}
+		if (inf <= index) {
+			list.add(tree.value);
+		}
+		index++;
+		return getInOrder(tree.right, inf, sup, list, index);
 	}
 
 	private class Node {
@@ -41,9 +41,7 @@ public class BST<T> {
 		Node left;
 		Node right;
 
-		Node(T value) {
-			this.value = value;
-		}
+
 	}
 
 }

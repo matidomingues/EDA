@@ -71,6 +71,7 @@ public class BST<T> implements BinarySearchTree<T> {
 		Node left;
 		Node right;
 
+		@SuppressWarnings("unused")
 		Node(T value) {
 			this.value = value;
 		}

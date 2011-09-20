@@ -4,11 +4,11 @@ import java.util.Comparator;
 
 public class BST<T> implements BinarySearchTree<T> {
 	private Node root;
-	private Comparator<? super T> cmp;
+
 
 	public BST(Comparator<? super T> cmp) {
 		this.root = null;
-		this.cmp = cmp;
+
 	}
 
 	public void add(T value) {

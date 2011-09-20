@@ -12,6 +12,6 @@ public class testbst {
 		bst.add(10);
 		bst.add(40);
 		bst.add(260);
-		System.out.println(bst.getInOrder(1, 2));
+		System.out.println(bst.getInOrder(1, 4));
 	}
 }

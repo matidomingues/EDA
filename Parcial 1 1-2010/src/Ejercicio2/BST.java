@@ -66,10 +66,6 @@ public class BST<T> implements BinarySearchTree<T> {
 		return true;
 	}
 
-	private Node remove(Node node, T value) {
-		return null;
-	}
-
 	private class Node {
 		T value;
 		Node left;

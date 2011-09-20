@@ -1,32 +1,38 @@
 package Ejercicio3;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import Ejercicio1.BST.Node;
 
 public class BST<T> {
 	/**
 	 * 12:01 - 12:13
 	 */
+	
+	Node tree;
+	
 	public List<T> getInOrder(int inf, int sup) {
-		List<T> list;
+		List<T> list = new LinkedList<T>();
 		getInOrder(tree, inf, sup, list);
 		return list;
 	}
 
-	private void getInOrder(Node tree, int inf, int sup, List<T> list) {
+	private int getInOrder(Node tree, int inf, int sup, List<T> list) {
+		int index;
 		if (tree == null) {
-			return;
+			return 0;
 		}
 
-		getInOrder(tree.left, inf, sup, list);
-		if (inf <= 0 && sup >= 0) {
+		index = getInOrder(tree.left, inf, sup, list);
+		index++;
+		if (inf <= index && sup >= index) {
 			list.add(tree.value);
 		}
-		if (sup == 0) {
-			return;
+		if (sup == index) {
+			return index;
 		}
-		getInOrder(tree.right, inf - 1, sup - 1, list);
+		getInOrder(tree.right, inf, sup, list);
+		return index;
 
 	}
 

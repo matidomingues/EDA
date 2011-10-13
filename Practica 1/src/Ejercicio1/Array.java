@@ -11,7 +11,6 @@ public class Array {
 		for (int a = 0; a < elements; a++) {
 			array[a] = new Integer(num.nextInt());
 		}
-
 		sort.sort(array);
 		// print(array);
 	}

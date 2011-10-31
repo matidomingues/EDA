@@ -63,6 +63,8 @@ public class DiGraph<V, E extends ArcGraph> extends GraphAdjList<V, E> {
 			return true;
 		} else if (data.visited) {
 			return false;
+		} else if(data.adj.size() == 0){
+			return false;
 		}
 		data.visited = true;
 		boolean tru;

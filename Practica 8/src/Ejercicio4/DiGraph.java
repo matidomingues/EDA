@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio4;
 
 public class DiGraph<V, E extends ArcGraph> extends GraphAdjList<V, E> {
 
@@ -24,22 +24,17 @@ public class DiGraph<V, E extends ArcGraph> extends GraphAdjList<V, E> {
 		return 0;
 	}
 
-	public boolean hasCircles(){
+	public boolean hasCircles(V node){
+		Node data = nodes.get(node);
+		return hasCircles(data);
 		
-		for(Node data: nodeList){
-			clearMarks();
-			if(!hasCircles(data)){
-				return false;
-			}
-		}
-		return true;
 		
 	}
 	private boolean hasCircles(Node data){
 		if(data.visited){
-			return true;
-		}else if(data.adj.size() == 0){
 			return false;
+		}else if(data.adj.size() == 0){
+			return true;
 		}
 		boolean tru;
 		for(Arc a: data.adj){

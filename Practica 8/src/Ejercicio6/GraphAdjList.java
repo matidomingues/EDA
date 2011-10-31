@@ -1,4 +1,4 @@
-package graph;
+package Ejercicio6;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -165,7 +165,7 @@ public abstract class GraphAdjList<V, E extends ArcGraph> {
 		return nodes.size();
 	}
 
-	public List<Node> getNodes() {
+	protected List<Node> getNodes() {
 		return nodeList;
 	}
 

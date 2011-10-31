@@ -1,9 +1,8 @@
 package Ejercicio4;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import Ejercicio4.GraphAdjList.Arc;
+import java.util.Set;
 
 /**
  * Se tiene un grafo en donde los nodos representan personas y existe un eje
@@ -18,20 +17,66 @@ import Ejercicio4.GraphAdjList.Arc;
 
 public class Separation<V> {
 
-	public void isSeparated()
-	
-	
-	
-	
+	Node head;
+
+	public boolean isSeparated() {
+		for (Node a : head.adj) {
+			if (a.isSeparated) {
+				clearNodes(a);
+				isSeparated(a, 0);
+				visitedNodes = new HashSet<Node>();
+				if (checkNodes(a)) {
+					a.isSeparated = true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private void isSeparated(Node data, int sep) {
+		if (data == null || sep == 7 || data.isSeparated == true
+				|| data.visited == true) {
+			return;
+		}
+
+		data.visited = true;
+		for (Node a : data.adj) {
+			isSeparated(a, sep + 1);
+		}
+	}
+
+	private boolean checkNodes(Node data) {
+		if (data == null || visitedNodes.contains(data)
+				|| data.isSeparated == true) {
+			return true;
+		}
+		visitedNodes.add(data);
+		if (data.visited == true) {
+			for (Node a : data.adj) {
+				return checkNodes(a);
+			}
+		}
+		return false;
+	}
+
+	private void clearNodes(Node data) {
+		if (data.visited == false) {
+			return;
+		}
+		data.visited = false;
+		for (Node a : data.adj) {
+			clearNodes(a);
+		}
+
+	}
+
+	Set<Node> visitedNodes;
+
 	private class Node {
-		public V info;
 		public boolean visited;
 		public List<Node> adj;
-
-		public Node(V info) {
-			this.info = info;
-			this.visited = false;
-			this.adj = new ArrayList<Node>();
-		}
+		public boolean isSeparated;
 	}
 }

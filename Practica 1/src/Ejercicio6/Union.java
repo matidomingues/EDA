@@ -1,5 +1,7 @@
 package Ejercicio6;
 
+import java.lang.reflect.Array;
+
 public class Union<T extends Comparable<T>> {
 	/**
 	 * Gets the Union between two elements. Complexity: O(N^2).

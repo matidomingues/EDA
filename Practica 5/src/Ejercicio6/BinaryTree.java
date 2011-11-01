@@ -139,7 +139,7 @@ public class BinaryTree<T extends Comparable<? super T>> implements
 	private int getInOrder(Tree<T> tree, Integer inf, Integer sup, List<T> list, int index) {
 		if (tree == null) {
 			return index;
-		}
+		}gin 
 
 		index = getInOrder(tree.left, inf, sup, list, index);
 		

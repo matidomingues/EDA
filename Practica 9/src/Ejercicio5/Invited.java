@@ -22,6 +22,7 @@ public class Invited {
 
 	private void copy(Integer[] vec){
 		for(int i = 0; i<vec.length; i++){
+			
 			bestvalue[i] = vec[i];
 		}
 	}

@@ -109,29 +109,27 @@ public class Invited {
 		return sumValue;
 	}
 
-	public int disorder2(Integer[] vec){
+	public void disorder2(Integer[] vec){
 		Integer[] vec2 = new Integer[(int)(vec.length/2)];
-		return disorder2(vec, vec2, 0, 0);
+		disorder2(vec, vec2, 0, 0, null);
 	}
 	
-	private int disorder2(Integer[] vec, Integer[] vec2, int pos, int loc) {
+	private int disorder2(Integer[] vec, Integer[] vec2, int pos, int loc, Integer localmax) {
 		if (pos == (int) (vec.length / 2)) {
-			int eval = evaluate(vec, vec2);
-			System.out.println(eval);
-			print(vec2);
-			return eval;
-		}
-		int aux;
-		Integer localmax = null;
-		for (int i = loc; i < vec.length; i++) {
-			vec2[pos] = vec[i];
-			aux = disorder2(vec, vec2, pos + 1, i+1);
-			if (localmax == null || localmax < aux) {
-				localmax = aux;
-			}
+			return evaluate(vec, vec2);
 
 		}
-		System.out.println(loc + " " + localmax + " " + pos );
+		int aux;
+		for (int i = loc; i < vec.length; i++) {
+			vec2[pos] = vec[i];
+			aux = disorder2(vec, vec2, pos + 1, i+1, localmax);
+			if (localmax == null || localmax < aux) {
+				print(vec2);
+				localmax = aux;
+			}
+			vec2[pos] = null; 
+
+		}
 		return localmax;
 	}
 

@@ -6,6 +6,7 @@ public class InvitedBoolean {
 	
 	
 	private boolean evaluateComp( Integer[] vec) {
+		
 		for (int i = 0; i <vec.length / 2; i++) {
 			for (int w = i + 1; w < vec.length / 2; w++) {
 				if(!data[vec[i]][vec[w]]){
@@ -26,6 +27,15 @@ public class InvitedBoolean {
 	
 	public boolean invitedBoolean(Integer[] vec){
 		return invitedBoolean(vec, 0);
+	}
+	
+	public boolean invitedBoolean2(Integer[] vec, int step){
+		return false;
+	}
+	
+	private void makeGraph(Integer[] vec){
+		
+		
 	}
 	
 	private boolean invitedBoolean(Integer[] vec, int step){

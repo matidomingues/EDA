@@ -1,5 +1,7 @@
 package Ejercicio4;
 
+import java.util.List;
+
 public class ArbolGeneradorMinimo<V, E extends ArcGraph> extends
 		DiGraph<V, ArcGraph> {
 	@SuppressWarnings("unchecked")
@@ -42,6 +44,7 @@ public class ArbolGeneradorMinimo<V, E extends ArcGraph> extends
 		Node bestNode = null;
 		Arc aux = null;
 		Double minlength = null;
+		
 		for (Node data : graph.getNodes()) {
 			for (Arc a : data.adj) {
 				if (minlength == null) {

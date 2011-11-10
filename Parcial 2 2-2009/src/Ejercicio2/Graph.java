@@ -1,16 +1,19 @@
-package Ejercicio1;
+package Ejercicio2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Graph<V> {
 	private HashMap<V, Node> nodes = new HashMap<V, Node>();
 	private List<Node> nodeList = new ArrayList<Node>();
 
-	public void addVertex(V vertex) {
+	public void addVertex(V vertex, int weight) {
 		if (!nodes.containsKey(vertex)) {
-			Node node = new Node(vertex);
+			Node node = new Node(vertex, weight);
 			nodes.put(vertex, node);
 			nodeList.add(node);
 		}
@@ -32,12 +35,14 @@ public class Graph<V> {
 
 	private class Node {
 		V info;
+		int weight;
 		boolean visited = false;
 		int tag = 0;
 		List<Arc> adj = new ArrayList<Arc>();
 
-		public Node(V info) {
+		public Node(V info, int weight) {
 			this.info = info;
+			this.weight = weight;
 		}
 
 		public int hashCode() {
@@ -45,7 +50,7 @@ public class Graph<V> {
 		}
 
 		public boolean equals(Object obj) {
-			if (obj == null || obj.getClass() != getClass()) {
+			if (obj == null || !(obj.getClass() != getClass())) {
 				return false;
 			}
 			return info.equals(((Node) obj).info);
@@ -61,29 +66,41 @@ public class Graph<V> {
 			this.neighbor = neighbor;
 		}
 	}
-	
-	public int getMax(V start, V end){
-		return getMax(nodes.get(start), nodes.get(end),null);
-	}
-	
-	private int getMax(Node start, Node end, Integer sum){
-		if(start.visited){
-			return 0;
-		}else if(start == end){
-			return sum;
-		}
-		start.visited = true;
-		int len;
-		for(Arc a: start.adj){
-			len  = getMax(a.neighbor, end, sum);
-			if(sum== null || sum < len){
-				sum = len;
+
+	public int countCycles(V a) {
+		List<Node2> data = new LinkedList<Node2>();
+		data.add(new Node2(nodes.get(a), null));
+		Node2 aux;
+		int count = 0;
+		nodes.get(a).visited = true;
+		while (!data.isEmpty()) {
+			aux = data.get(0);
+			data.remove(0);
+			for (Arc node : aux.node.adj) {
+				if (node.neighbor != aux.called) {
+					if (node.neighbor.visited) {
+						count++;
+					} else {
+						node.neighbor.visited = true;
+						data.add(new Node2(node.neighbor, aux.node));
+					}
+				}
 			}
-		
+
 		}
-		start.visited = false;
-		return sum;
-		
+		return (int) (count / 2);
+
 	}
-	
+
+	private class Node2 {
+		Node node;
+		Node called;
+
+		public Node2(Node node, Node called) {
+			this.node = node;
+			this.called = called;
+		}
+
+	}
+
 }

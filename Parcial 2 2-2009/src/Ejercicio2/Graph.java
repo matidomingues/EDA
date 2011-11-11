@@ -67,6 +67,10 @@ public class Graph<V> {
 		}
 	}
 
+	/**
+	 * ESTA MAL, CALCULA LOS CICLOS TOTALES Y NO LOS DE A.
+	 * EL countCycles2 ANDA BIEN
+	 */
 	public int countCycles(V a) {
 		List<Node2> data = new LinkedList<Node2>();
 		data.add(new Node2(nodes.get(a), null));
@@ -100,6 +104,28 @@ public class Graph<V> {
 			this.node = node;
 			this.called = called;
 		}
+
+	}
+
+	public int countCycles2(V a) {
+		return countCycles(nodes.get(a), null, nodes.get(a)) / 2;
+	}
+
+	private Integer countCycles(Node data, Node before, Node end) {
+		if (data.visited && data == end) {
+			return 1;
+		} else if (data.visited) {
+			return 0;
+		}
+		data.visited = true;
+		int sum = 0;
+		for (Arc a : data.adj) {
+			if (a.neighbor != before) {
+				sum += countCycles(a.neighbor, data, end);
+			}
+		}
+		data.visited = false;
+		return sum;
 
 	}
 

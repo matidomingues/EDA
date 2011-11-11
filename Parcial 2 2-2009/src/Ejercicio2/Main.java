@@ -18,7 +18,7 @@ public class Main {
 		test.addArc("C", "B", 1);
 		test.addArc("A", "C", 3);
 		test.addArc("C", "A", 3);
-		System.out.println(test.countCycles("A"));
+		System.out.println(test.countCycles2("B"));
 	}
 
 

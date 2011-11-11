@@ -1,8 +1,11 @@
 package Ejercicio1;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Graph<V> {
 	private HashMap<V, Node> nodes = new HashMap<V, Node>();
@@ -63,28 +66,75 @@ public class Graph<V> {
 			this.neighbor = neighbor;
 		}
 	}
-	
-	public int getMinPath(V startNode, V endNode){
-		
-		return getMinPath(nodes.get(startNode), nodes.get(endNode), 0, null);
+
+	public int getMinPath(V startNode, V endNode) {
+		return getMinPath2(nodes.get(startNode), nodes.get(endNode));
+	//	return getMinPath(nodes.get(startNode), nodes.get(endNode), 0, null);
 	}
-	
-	private Integer getMinPath(Node start, Node end, int sum, Integer data){
-		if(start.visited){
+
+	/**
+	 *	HOLA VICKY, ESTE ESTA MAL, VA EL getMinPath2
+	 */
+	private Integer getMinPath(Node start, Node end, int sum, Integer data) {
+		if (start.visited) {
 			return null;
-		}else if(start == end){
+		} else if (start == end) {
 			return sum + end.weight;
 		}
 		Integer local;
 		start.visited = true;
-		for(Arc sig: start.adj){
-			local = getMinPath(sig.neighbor, end, sum+start.weight+sig.weight,data);
-			if(local != null && (data == null || data > local)){
+		for (Arc sig : start.adj) {
+			local = getMinPath(sig.neighbor, end, sum + start.weight
+					+ sig.weight, data);
+			if (local != null && (data == null || data > local)) {
 				data = local;
 			}
 		}
 		start.visited = false;
 		return data;
 	}
-	
+
+	private Integer getMinPath2(Node start, Node end) {
+		Queue<Node2> data = new PriorityQueue<Node2>();
+		data.add(new Node2(start, start.weight));
+		Node2 aux;
+		while (!data.isEmpty()) {
+			aux = data.poll();
+			aux.data.visited = true;
+			if (aux.data == end) {
+				return aux.value;
+			}
+			for (Arc a : aux.data.adj) {
+				if (!a.neighbor.visited) {
+					data.add(new Node2(a.neighbor, aux.value + a.weight
+							+ a.neighbor.weight));
+				}
+			}
+			aux.data.visited = false;
+		}
+		return null;
+
+	}
+
+	private class Node2 implements Comparable {
+		Node data;
+		int value;
+
+		public Node2(Node data, int value) {
+			this.data = data;
+			this.value = value;
+		}
+
+		@Override
+		public int compareTo(Object o) {
+			if (this.value < ((Node2) o).value) {
+				return -1;
+			} else if (this.value == ((Node2) o).value) {
+				return 0;
+			} else {
+				return 1;
+			}
+		}
+
+	}
 }
